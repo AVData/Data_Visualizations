@@ -11,6 +11,6 @@ My primary aim was to obtain visualizations focused on a specific question.  The
 
 The visualizations generated were the following:
 
-[](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/all_time_in_bed_dist.png?raw=true)
+![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/all_time_in_bed_dist.png?raw=true)
 
 Keep in mind that I will continue to grow this analysis, as more things become available, namely step tracker, and heart rate monitoring device.
