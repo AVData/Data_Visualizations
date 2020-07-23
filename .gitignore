@@ -78,7 +78,7 @@ target/
 .ipynb_checkpoints
 
 # Raw data
-.csv
+sleepdata.csv
 
 # IPython
 profile_default/
