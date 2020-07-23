@@ -14,7 +14,7 @@ The Sleep Cycle app collects information based on your sleeping habits; my analy
 ## Usage
 
 Open the Sleep Cycle app (v6.9), to go the profile tab:
-`settings > (Statistics) Database`
+- `settings > (Statistics) Database`
 
 When in the Database, press the `Export database` link.
 
@@ -22,11 +22,14 @@ Your data will be emailed to the associated email address as a .CSV file.  That 
 
 Git clone this repo, and in a new jupyter notebook (within the same directory) import the [wrangle_function](https://github.com/AVData/SleepQuality_app_analysis/tree/master/wrangle).  Use the wrangle function to process your data.  To do this, use the name of the CSV file as argument in the function.  (Note: if the CSV file is named filename.CSV, the argument in the function should only be the string 'filename')
 
-The wrangle function will process your data and generate t-test value, p-value, and a new DataFrame.
+The wrangle function will process your data and generate:
+- `t-test value`
+- `p-value`
+- `DataFrame`
 
 Use the following example as template to execute and generate statistics and a cleaned DataFrame:
 
-CSV File: sleepdata.csv
+CSV File: `sleepdata.csv`
 
 ```python
 from wrangle import wrangle_function
