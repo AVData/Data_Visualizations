@@ -1,4 +1,3 @@
-
 # Sleep Quality App Analysis
 
 The primary aim of this project was to obtain answers focused on a specific question regarding sleeping habits over time.  Hence, the repo was created to perform analysis and generate visualizations from data collected by the [sleep cycle app](https://www.sleepcycle.com).
