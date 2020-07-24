@@ -26,9 +26,9 @@ The wrangle function will process your data and generate:
 - `p-value`
 - `DataFrame`
 
-Use the following example as template to execute and generate statistics and a cleaned DataFrame:
+Use the following example as template to generate statistics and a clean DataFrame:
 
-(note: make sure the csv file lives in the same repository as the .py file you're be using to execute the wrangle function.)
+(note: make sure the csv file lives in the same repository as the .py file you'll be using as an argument for for the wrangle_function.)
 CSV File: `sleepdata.csv`
 
 ```python
