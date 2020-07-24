@@ -21,7 +21,9 @@ def wrangle_function(dataframe):
     '''
     df = pd.read_csv(f'./{dataframe}.csv', delimiter=';')
     df = df.drop(columns=['Heart rate', 'Wake up', 'Sleep Notes'])
-    df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype('float')/100
+    df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype(
+                                                                'float'
+                                                                    )/100
     df['Start'] = pd.to_datetime(df['Start'], infer_datetime_format=True)
     df['End'] = pd.to_datetime(df['End'], infer_datetime_format=True)
 
