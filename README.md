@@ -28,13 +28,16 @@ The wrangle function will process your data and generate:
 
 Use the following example as template to execute and generate statistics and a cleaned DataFrame:
 
+(note: make sure the csv file lives in the same repository as the .py file you're be using to execute the wrangle function.)
 CSV File: `sleepdata.csv`
 
 ```python
-from wrangle import wrangle_function
+from wrangle.wrangle import wrangle_function
 
 t_stat, p_value, sleepdata_df = wrangle_function('sleepdata')
 ```
+
+Go ahead and take a look at the [example](https://github.com/AVData/SleepQuality_app_analysis/blob/master/example.py) file to see how to run the wrangle function.
 
 Notes on visualizations to come.
 
