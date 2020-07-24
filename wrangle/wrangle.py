@@ -19,9 +19,6 @@ def wrangle_function(dataframe):
         Test-statistic
         P-Value
     '''
-    import pandas as pd
-    from scipy import stats
-    from datetime import datetime, timedelta
     df = pd.read_csv(f'./{dataframe}.csv', delimiter=';')
     df = df.drop(columns=['Heart rate', 'Wake up', 'Sleep Notes'])
     df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype('float')/100
@@ -31,28 +28,31 @@ def wrangle_function(dataframe):
     wkday_int = []
 
     for elem in range(len(df['Start'])):
-        if (df['Start'][elem].dayofweek == 0) and (df['Start'][elem].dayofweek == df['End'][elem].dayofweek):
+        if (df['Start'][elem].dayofweek == 0) and\
+           (df['Start'][elem].dayofweek == df['End'][elem].dayofweek):
             wkday_int.append(6)
         elif df['Start'][elem].dayofweek == df['End'][elem].dayofweek:
-            wkday_int.append(df['End'][elem].dayofweek -1)
+            wkday_int.append(df['End'][elem].dayofweek - 1)
         else:
             wkday_int.append(df['Start'][elem].dayofweek)
 
     df['Weekday to Bed (int)'] = pd.DataFrame(wkday_int)
 
     day = {
-    0: 'Monday',
-    1: 'Tuesday',
-    2: 'Wednesday',
-    3: 'Thursday',
-    4: 'Friday',
-    5: 'Saturday',
-    6: 'Sunday'
+            0: 'Monday',
+            1: 'Tuesday',
+            2: 'Wednesday',
+            3: 'Thursday',
+            4: 'Friday',
+            5: 'Saturday',
+            6: 'Sunday'
         }
 
     df['Weekday to bed (name)'] = df['Weekday to Bed (int)'].map(day)
     df['Time in bed'] = pd.to_datetime(df['Time in bed']).dt.time
-    df['Time in bed'] = df['Time in bed'].apply(lambda element: round((float(element.minute)/60) + (float(element.hour)), 2))
+    df['Time in bed'] = df['Time in bed'].apply(lambda element: round((
+                        float(element.minute)/60) + (float(element.hour)), 2
+                                                                        ))
 
     date_lst = []
     for elem in range(len(df['Start'])):
@@ -73,4 +73,5 @@ def wrangle_function(dataframe):
     df.drop(index_vals, inplace=True)
 
     test_statistic, p_value = stats.ttest_ind(df['Sleep quality'][:401], df['Sleep quality'][401:], nan_policy='omit')
+
     return test_statistic, p_value, df
