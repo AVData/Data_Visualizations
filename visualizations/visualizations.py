@@ -11,7 +11,8 @@ def visualisations():
     fig, ax_4 = plt.subplots()
     ax_4 = sns.distplot(
                         df['Time in bed'][:401],
-                        hist=False, color='r',
+                        hist=False,
+                        color='r',
                         label='Before'
                         )
     ax_4 = sns.distplot(
@@ -47,7 +48,6 @@ def visualisations():
                         )
     ax.legend()
 
-
     # Line plots
     fig_1, ax_1 = plt.subplots()
     ax_1 = sns.lineplot(
@@ -56,7 +56,6 @@ def visualisations():
                         hue=df['Before and During'],
                         err_style='bars'
                         )
-
 
     # Box plots
     fig_2, ax_2 = plt.subplots()
@@ -77,7 +76,6 @@ def visualisations():
                        color='salmon'
                         )
     ax_2.legend()
-
 
     # Barplots
     fig_3, ax_3 = plt.subplots()

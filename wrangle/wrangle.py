@@ -36,13 +36,19 @@ def wrangle_function(dataframe):
                         ])
 
     # Stripping the Sleepl quality percentage string, to turn it into a foat
-    df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype(
-                                                                'float'
-                                                                    )/100
+    df['Sleep quality'] = df['Sleep quality'].str\
+                                             .rstrip('%')\
+                                             .astype('float')/100
 
     # 'Start' and 'End' columns turned into datetime types
-    df['Start'] = pd.to_datetime(df['Start'], infer_datetime_format=True)
-    df['End'] = pd.to_datetime(df['End'], infer_datetime_format=True)
+    df['Start'] = pd.to_datetime(
+                                df['Start'],
+                                infer_datetime_format=True
+                                )
+    df['End'] = pd.to_datetime(
+                                df['End'],
+                                infer_datetime_format=True
+                                )
 
     # For look: wkday_int list is the list that eventually becomes the new
     # 'Weekday to Bed (int)' column; column of weekdays per day of week
@@ -69,10 +75,14 @@ def wrangle_function(dataframe):
         }
 
     df['Weekday to bed (name)'] = df['Weekday to Bed (int)'].map(day)
-    df['Time in bed'] = pd.to_datetime(df['Time in bed']).dt.time
-    df['Time in bed'] = df['Time in bed'].apply(lambda element: round((
-                        float(element.minute)/60) + (float(element.hour)), 2
-                                                                        ))
+    df['Time in bed'] = pd.to_datetime(df['Time in bed'])\
+                          .dt\
+                          .time
+    df['Time in bed'] = df['Time in bed']\
+                        .apply(lambda element: round(
+                                                (float(element.minute)/60) +\
+                                                (float(element.hour)),
+                                                2))
 
     # For loop: list holds values that will become 'Date to bed' column;
     # the loop takes the values of the 'Start' and 'End' columns and compares
