@@ -4,21 +4,29 @@ from datetime import datetime, timedelta
 
 
 def wrangle_function(dataframe):
-    '''This function takes in the SleepCycle app csv file, creates and cleans a
-    dataframe, and generates statistics given a the date specified.
+    '''This function takes in the SleepCycle file name as an argument and
+    cleans the respective CSV DataFrame.  It then generates a new dataframe
+    with it's respective statistics pertaining to a specific set of parameters.
+    The parameters are partitionaning of the dataframe given an arbitrary date.
 
     :example use:
-    - from wrangle import wrangle_function
-    - t_stat, p_value, df = wrangle_function('dataframe')
+    - from wrangle.wrangle import wrangle_function
+    - t_stat, p_value, sleepcycle_df = wrangle_function('dataframe')
 
     Args:
-        :str:dataframe: The dataframe argument taken in the CSV file name from
-        the SleepCycle app as a string.
+        str: The argument used in this function is the SleepCycle csv file name
+        as a string value.  The function will then search for that file in the
+        repository and execute the analysis and cleaning.  In the future I'll
+        be including argument to allow for date selection for the desired
+        partitioning.
 
     Returns:
         Test-statistic
         P-Value
+        Cleaned DataFrame
     '''
+
+
     df = pd.read_csv(f'./{dataframe}.csv', delimiter=';')
     df = df.drop(columns=['Heart rate', 'Wake up', 'Sleep Notes'])
     df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype(
