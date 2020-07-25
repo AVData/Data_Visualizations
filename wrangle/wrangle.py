@@ -28,7 +28,7 @@ def wrangle_function(dataframe):
 
     # Imports the dataframe given the string name used as argument, and drops
     # a few columns
-    df = pd.read_csv(f'./{dataframe}.csv', delimiter=';')
+    df = pd.read_csv(f'../{dataframe}.csv', delimiter=';')
     df = df.drop(columns=[
                         'Heart rate',
                         'Wake up',

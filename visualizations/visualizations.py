@@ -1,10 +1,10 @@
 def visualisations():
-    '''This function will create visualizations of the sleep data acquired from the SleepCycle app.
-    
+    '''This function will create visualizations of the sleep data acquired from
+    the SleepCycle app.
     '''
     index_vals = df[df['Sleep quality'] < .2].index
     df.drop(index_vals, inplace=True)
-    
+
     # Subplots
     # sns.set_style('white')
     # Distributions plots:

@@ -12,6 +12,8 @@ The Sleep Cycle app collects information based on your sleeping habits; my analy
 
 ## Usage
 
+### Wrangling
+
 Open the Sleep Cycle app (v6.9), to go the profile tab:
 - `settings > (Statistics) Database`
 
@@ -39,8 +41,14 @@ t_stat, p_value, sleepdata_df = wrangle_function('sleepdata')
 
 Go ahead and take a look at the [example](https://github.com/AVData/SleepQuality_app_analysis/blob/master/example.py) file to see how to run the wrangle function.
 
+
+### Visualizing
+
 Notes on visualizations to come.
 
-![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/all_time_in_bed_dist.png?raw=true)
+![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/pop_sleep_qs_dist.png?raw=true)
+![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/pop_time_in_bed_dist.png?raw=true)
+![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/pop_qs_wkdy.png?raw=true)
+![](https://github.com/AVData/SleepQuality_app_analysis/blob/master/visualizations/pop_t_to_b_wkdy.png?raw=true)
 
 Keep in mind that I will continue to grow this analysis, as more things become available, namely step tracker, and heart rate monitoring device.
