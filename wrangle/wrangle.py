@@ -26,17 +26,27 @@ def wrangle_function(dataframe):
         Cleaned DataFrame
     '''
 
-
+    # Imports the dataframe given the string name used as argument, and drops
+    # a few columns
     df = pd.read_csv(f'./{dataframe}.csv', delimiter=';')
-    df = df.drop(columns=['Heart rate', 'Wake up', 'Sleep Notes'])
+    df = df.drop(columns=[
+                        'Heart rate',
+                        'Wake up',
+                        'Sleep Notes'
+                        ])
+
+    # Stripping the Sleepl quality percentage string, to turn it into a foat
     df['Sleep quality'] = df['Sleep quality'].str.rstrip('%').astype(
                                                                 'float'
                                                                     )/100
+
+    # 'Start' and 'End' columns turned into datetime types
     df['Start'] = pd.to_datetime(df['Start'], infer_datetime_format=True)
     df['End'] = pd.to_datetime(df['End'], infer_datetime_format=True)
 
+    # For look: wkday_int list is the list that eventually becomes the new
+    # 'Weekday to Bed (int)' column; column of weekdays per day of week
     wkday_int = []
-
     for elem in range(len(df['Start'])):
         if (df['Start'][elem].dayofweek == 0) and\
            (df['Start'][elem].dayofweek == df['End'][elem].dayofweek):
@@ -45,9 +55,9 @@ def wrangle_function(dataframe):
             wkday_int.append(df['End'][elem].dayofweek - 1)
         else:
             wkday_int.append(df['Start'][elem].dayofweek)
-
     df['Weekday to Bed (int)'] = pd.DataFrame(wkday_int)
 
+    # Dictionary that is used in mapping to go from weekday int to weekday name
     day = {
             0: 'Monday',
             1: 'Tuesday',
