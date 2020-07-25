@@ -74,24 +74,44 @@ def wrangle_function(dataframe):
                         float(element.minute)/60) + (float(element.hour)), 2
                                                                         ))
 
+    # For loop: list holds values that will become 'Date to bed' column;
+    # the loop takes the values of the 'Start' and 'End' columns and compares
+    # them to see if the two dates are the same, if so, it replaces the start
+    # date to the appropriate previous date.  Having both start and end dates
+    # be the same implies the individual went to bed past midnight, but the
+    # but actually intended to go to bed the night prior; resulting in the
+    # 'Date to bed' column
     date_lst = []
     for elem in range(len(df['Start'])):
         if df['Start'][elem].date() == df['End'][elem].date():
             date_lst.append(df['Start'][elem].date() - timedelta(days=1))
         else:
             date_lst.append(df['Start'][elem].date())
-
     df['Date to bed'] = date_lst
 
+    # the previous for loop created some duplicates that need to be dropped.
     df['Date to bed'] = df['Date to bed'].drop_duplicates(keep='first')
     df.dropna(subset=['Date to bed'], inplace=True)
 
+    # Setting up a colum to split the dataframe.
     df['Before and During'] = df[['Start']].isin(df[:401])
-    df['Before and During'] = df['Before and During'].replace(True, 'Before').replace(False, 'During')
+    df['Before and During'] = df['Before and During'].replace(
+                                                            True,
+                                                            'Before'
+                                                    ).replace(
+                                                            False,
+                                                            'During'
+                                                            )
 
+    # Removes outliers; values in sleep quality < .2
     index_vals = df[df['Sleep quality'] < .2].index
     df.drop(index_vals, inplace=True)
 
-    test_statistic, p_value = stats.ttest_ind(df['Sleep quality'][:401], df['Sleep quality'][401:], nan_policy='omit')
+    # Returned variables
+    test_statistic, p_value = stats.ttest_ind(
+                                            df['Sleep quality'][:401],
+                                            df['Sleep quality'][401:],
+                                            nan_policy='omit'
+                                            )
 
     return test_statistic, p_value, df
